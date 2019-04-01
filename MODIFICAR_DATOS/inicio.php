@@ -3,13 +3,70 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Consulta Join</title>
+    <title>ESTACIONES</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
     <div class="container">
+<div style="margin: 0 auto">
+    <h3>ESTACIONES</h3>
+</div>
+
+<!--MODAL: Boton con ventana emergente-->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  AGREGAR
+</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar nueva estación</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <!--FORMULARIO-->
+      <form action="m_file\insert.php" method="post">
+                <div class="form-group">
+                    <label for="imarca">MARCA</label>
+                    <input type="text" class="form-control" name="imarca" id="imarca" required>
+                </div>
+                <div class="form-group">
+                    <label for="imodelo">MODELO</label>
+                    <input type="text" class="form-control" name="imodelo" id="imodelo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="iip">IP</label>
+                    <input type="text" class="form-control" name="iip" id="iip" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="iticon">TIPO DE CONEXIÓN</label>
+                    <input type="text" class="form-control" name="iticon" id="iticon" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="iubi">UBICACIÓN</label>
+                    <input type="text" class="form-control" name="iubi" id="iubi" required>
+                </div>
+
+                <p>
+                    <input type="submit" class="btn btn-primary btn-block" value="Insertar">
+                </p>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
     <!--CONSULTA-->
         <?php
             $conexion = mysqli_connect("localhost", "root", "", "estacion") 

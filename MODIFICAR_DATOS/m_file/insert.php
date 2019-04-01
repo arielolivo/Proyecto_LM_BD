@@ -20,15 +20,26 @@
             $tipoc = trim(htmlspecialchars($_REQUEST["iticon"], ENT_QUOTES, "UTF-8"));
             $ubi = trim(htmlspecialchars($_REQUEST["iubi"], ENT_QUOTES, "UTF-8"));
             $id=1;
+            
+            //CON1
             $conexion = mysqli_connect("localhost", "root", "", "estacion")
                 or die("Problemas de conexión");
                 
             mysqli_query($conexion, 
                 "INSERT INTO estaciones(id, Marca, Modelo, IP, Tipo_Conex, Ubi) VALUES ('$id', '$marca','$modelo', '$ip', '$tipoc', '$ubi')")
                 or die("Problemas en el insert".mysqli_error($conexion));
+
+            //CON2
+            $conexion2 = mysqli_connect("localhost", "root", "", "estacion")
+                or die("Problemas de conexión");
+                
+            mysqli_query($conexion2, 
+                "INSERT INTO sensores(Id_Estacion) VALUES ('$id')")
+                or die("Problemas en el insert".mysqli_error($conexion2));
             
             mysqli_close($conexion);
             print "<h2>ESTACIÓ AGRGADA</h2>";
+            mysqli_close($conexion2);
             ?>
         </div>
         <!-- Optional JavaScript -->
