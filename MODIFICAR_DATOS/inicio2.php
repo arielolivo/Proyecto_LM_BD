@@ -17,7 +17,12 @@
 <div>
 <?php
         if (isset($_REQUEST["insertar"])) {
-            print "<p style='color: blue'> $_REQUEST[insertar] </p>";
+            echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+              <span aria-hidden='true'>&times;</span>
+            </button>
+          </div>";
             }
 ?>
 </div>
@@ -91,6 +96,7 @@
             <th>IP</th>
             <th>TIPO_CONEXION</th>
             <th>UBICACION</th>
+            <th>OPCIONES</th>
             </tr>";
                 while ($reg = mysqli_fetch_array($registros)) {
                     echo "<tr>";
@@ -100,8 +106,6 @@
                         echo "<td>" . $reg['IP'] . "</td>";
                         echo "<td>" . $reg['Tipo_Conex'] . "</td>";
                         echo "<td>" . $reg['Ubi'] . "</td>";
-                        echo "<td><button type='submit' id='btnEstado' name='btnEstado' value='$id'>Modificar Estado</button></td>";
-                        echo "<td><button type='submit' id='btnBorrar' name='btnBorrar' value='$id>Borrar</button></td>";
                     echo "</tr>";
                 }
 
@@ -113,6 +117,8 @@
                     $ejecutar = sqlsrv_query($borrar);
                     if ($ejecutar) {
                         echo "<script>alert('Ha sido Borrado')</script>";
+
+                    }}
             echo "</table>";
             mysqli_close($conexion);
         ?>
