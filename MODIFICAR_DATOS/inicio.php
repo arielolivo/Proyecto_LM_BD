@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-<div style="background-color: yellow; margin 100%">
+<div style="margin-bottom: 10px" class="bg-warning text-dark">
     <div><h3>ESTACIONES</h3></div>
 
 <!--ESTE MENSAJE LLEGA DEL HEADER DEL ARCHIVO insert.php-->
@@ -75,8 +75,11 @@
     </div>
   </div>
 </div>
-    
-    <!--CONSULTA-->
+
+
+<!--CONSULTA-->
+<div style="margin-top: 10px">
+
         <?php
             $conexion = mysqli_connect("localhost", "root", "", "estacion") 
             or die("Problemas con la conexión");
@@ -91,6 +94,7 @@
             <th>IP</th>
             <th>TIPO_CONEXION</th>
             <th>UBICACION</th>
+            <th>OPCIONES</th>
             </tr>";
                 while ($reg = mysqli_fetch_array($registros)) {
                     echo "<tr>";
@@ -100,15 +104,40 @@
                         echo "<td>" . $reg['IP'] . "</td>";
                         echo "<td>" . $reg['Tipo_Conex'] . "</td>";
                         echo "<td>" . $reg['Ubi'] . "</td>";
+                        echo "<td>";
+                        echo "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#borrar'>";
+                        echo "Borrar";
+                        echo "</button>";
+                        echo "</td>";
                     echo "</tr>";
                 }
             echo "</table>";
             mysqli_close($conexion);
         ?>
-
+</div>
 <!--MODIFICAR-->
 
 <!--BORRAR-->
+<!-- Modal -->
+<div class="modal fade" id="borrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">BORRAR</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                SE HA ELIMINADO LA FILA
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
 
     </div>
 
