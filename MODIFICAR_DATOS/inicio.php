@@ -10,8 +10,17 @@
 </head>
 <body>
     <div class="container">
-<div style="margin: 0 auto">
-    <h3>ESTACIONES</h3>
+<div style="background-color: yellow; margin 100%">
+    <div><h3>ESTACIONES</h3></div>
+
+<!--ESTE MENSAJE LLEGA DEL HEADER DEL ARCHIVO insert.php-->
+<div>
+<?php
+        if (isset($_REQUEST["insertar"])) {
+            print "<p style='color: blue'> $_REQUEST[insertar] </p>";
+            }
+?>
+</div>
 </div>
 
 <!--MODAL: Boton con ventana emergente-->
@@ -96,8 +105,6 @@
             echo "</table>";
             mysqli_close($conexion);
         ?>
-
-<!--INSERTAR-->
 
 <!--MODIFICAR-->
 

@@ -29,17 +29,10 @@
                 "INSERT INTO estaciones(id, Marca, Modelo, IP, Tipo_Conex, Ubi) VALUES ('$id', '$marca','$modelo', '$ip', '$tipoc', '$ubi')")
                 or die("Problemas en el insert".mysqli_error($conexion));
 
-            //CON2
-            $conexion2 = mysqli_connect("localhost", "root", "", "estacion")
-                or die("Problemas de conexión");
-                
-            mysqli_query($conexion2, 
-                "INSERT INTO sensores(Id_Estacion) VALUES ('$id')")
-                or die("Problemas en el insert".mysqli_error($conexion2));
-            
+        
             mysqli_close($conexion);
-            print "<h2>ESTACIÓ AGRGADA</h2>";
-            mysqli_close($conexion2);
+        //HEADER QUE MANDA UN MENSAJE A inicio.php
+            header('location: ..\inicio.php?insertar=ESTACIÓN AGREGADA');
             ?>
         </div>
         <!-- Optional JavaScript -->
