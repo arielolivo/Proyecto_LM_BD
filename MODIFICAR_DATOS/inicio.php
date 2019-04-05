@@ -8,17 +8,19 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
+<body style="padding-top:50px">
     <div class="container">
-<div style="margin-bottom: 10px" class="bg-warning text-dark">
-    <div><h3>ESTACIONES</h3></div>
+<div class="bg-warning text-dark" style="position:absolute;left:0px; top: 0px; z-index:1; width: 100%">
+  <h3>ESTACIONES</h3>
+</div>
 
 <!--ESTE MENSAJE LLEGA DEL HEADER DEL ARCHIVO insert.php-->
+
 <div>
 <?php
         if (isset($_REQUEST["insertar"])) {
           echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-          <strong>$_REQUEST[insertar]</strong> You should check in on some of those fields below.
+          <strong>$_REQUEST[insertar]</strong>
           <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
             <span aria-hidden='true'>&times;</span>
           </button>
@@ -26,18 +28,18 @@
             }
 ?>
 </div>
-</div>
+
 
 <!--MODAL: Boton con ventana emergente-->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   AGREGAR
 </button>
-<!-- Modal -->
+<!-- CABECERA -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar nueva estación</h5>
+        <h5 class="modal-title" id="exampleModalLabel">AGREGAR NUEVA ESTACIÓN</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -75,7 +77,7 @@
             </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
       </div>
     </div>
   </div>
@@ -110,7 +112,7 @@
                         echo "<td>" . $reg['Tipo_Conex'] . "</td>";
                         echo "<td>" . $reg['Ubi'] . "</td>";
                         echo "<td>";
-                        echo "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#borrar'>";
+                        echo "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#borrar'>";
                         echo "Borrar";
                         echo "</button>";
                         echo "</td>";
@@ -122,8 +124,8 @@
 </div>
 <!--MODIFICAR-->
 
-<!--BORRAR-->
-<!-- Modal -->
+<!--MODAL BORRAR-->
+<form action="m_file\delete.php" method="post">
 <div class="modal fade" id="borrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -134,16 +136,18 @@
                                 </button>
                               </div>
                               <div class="modal-body">
-                                SE HA ELIMINADO LA FILA
+                                ¿ESTAS SEGURO DE QUE DESEAS BORRAR ESTA ESTACIÓN?
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                <input type="submit" class="btn btn-danger" value="BORRAR">
                               </div>
                             </div>
                           </div>
                         </div>
-
+</form>
+    
+  <!--FIN CONTAINER-->  
     </div>
 
     <!-- Optional JavaScript -->
