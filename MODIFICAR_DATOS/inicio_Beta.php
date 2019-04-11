@@ -112,8 +112,35 @@
                         echo "<td>" . $reg['Tipo_Conex'] . "</td>";
                         echo "<td>" . $reg['Ubi'] . "</td>";
                         echo "<td>";
-                        echo "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#borrar'>";
+                        echo "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#borrar<?php $reg[Id]?>'>";
                         echo "Borrar";
+                        //DIV MODAL
+                        echo "<div>";
+                        echo "<form action='m_file\delete.php' method='post'>";
+                        echo "<div class='modal fade' id="borrar' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>";
+                        echo   "<div class='modal-dialog' role='document'>";
+                        echo     "<div class='modal-content'>';
+                        echo       "<div class='modal-header'>';
+                        echo         "<h5 class='modal-title' id='borrar'>BORRAR</h5>";
+                        echo         "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>";
+                        echo           "<span aria-hidden="true">&times;</span>";
+                        echo         "</button>";
+                        echo       "</div>";
+                        echo       "<div class='modal-body'>";
+                        echo         "¿ESTAS SEGURO DE QUE DESEAS BORRAR ESTA ESTACIÓN?";
+                        echo       "</div>";
+                        echo       "<div class='modal-footer'>";
+                        echo         "<button type='button' class='btn btn-secondary' data-dismiss='modal'>CERRAR</button>";
+                        //<!--FORMULARIO BORRAR-->;
+                        echo         "<form action='m_file\delete.php' method='post'>";
+                        echo         "<input type='submit' class='btn btn-danger' value='BORRAR'>";
+                        echo         "</form>";
+                        echo       "</div>";
+                        echo     "</div>";
+                        echo   "</div>";
+                        echo "</div>";
+                        echo </form>;
+                        echo "</div>";
                         echo "</button>";
                         echo "</td>";
                         echo "<td>";
@@ -178,30 +205,7 @@
 </div>
 
 <!--MODAL BORRAR-->
-<form action="m_file\delete.php" method="post">
-<div class="modal fade" id="borrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="borrar">BORRAR</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                ¿ESTAS SEGURO DE QUE DESEAS BORRAR ESTA ESTACIÓN?
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
-                                <!--FORMULARIO BORRAR-->
-                                <form action="m_file\delete.php" method="post">
-                                <input type="submit" class="btn btn-danger" value="BORRAR">
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-</form>
+
     
   <!--FIN CONTAINER-->  
     </div>

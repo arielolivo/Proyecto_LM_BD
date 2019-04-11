@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>DELETE</title>
+        <title>MODIFICAR</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet"
@@ -14,22 +14,24 @@
     <body>
         <div class="container">
             <?php
-             //CON1
-             $conexion = mysqli_connect("localhost", "root", "", "estacion")
-                 or die("Problemas de conexión");
+            $marca = trim(htmlspecialchars($_REQUEST["imarca"], ENT_QUOTES, "UTF-8"));
+            $modelo = trim(htmlspecialchars($_REQUEST["imodelo"], ENT_QUOTES, "UTF-8"));
+            $ip = trim(htmlspecialchars($_REQUEST["iip"], ENT_QUOTES, "UTF-8"));
+            $tipoc = trim(htmlspecialchars($_REQUEST["iticon"], ENT_QUOTES, "UTF-8"));
+            $ubi = trim(htmlspecialchars($_REQUEST["iubi"], ENT_QUOTES, "UTF-8"));
+            
+            //CON1
+            $conexion = mysqli_connect("localhost", "root", "", "estacion")
+                or die("Problemas de conexión");
+                
+            mysqli_query($conexion, 
+                "UPDATE estaciones SET Marca = '$marca', Modelo = '$modelo',IP = '$ip', Tipo_Conex = '$tipoc', Ubi = '$ubi' WHERE Id = 40")
+                or die("Problemas en el UPDATE".mysqli_error($conexion));
 
-            $id = mysqli_query($conexion,"SELECT to_char(Id) FROM estaciones where Id = 40");
-            //$borrar    DELETE FROM dept where id_dept=
-
-            mysqli_query($conexion, "DELETE FROM estaciones WHERE id = $id")
-                 or die("Problemas en el delete".mysqli_error($conexion));
-
-
-// DELETE FROM `estacion`.`estaciones` WHERE (`Id` = '24');
         
             mysqli_close($conexion);
         //HEADER QUE MANDA UN MENSAJE A inicio.php
-            header('location: ..\inicio.php?insertar=ESTACIÓN BORRADA');
+            header('location: ..\inicio.php?insertar=ESTACIÓN AGREGADA');
             
             ?>
         </div>
