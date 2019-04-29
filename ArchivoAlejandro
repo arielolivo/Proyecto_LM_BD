@@ -70,6 +70,12 @@ $('.input-daterange').datepicker({
     #PassA{
         display:none;
     }
+    #fi{
+        display:none;
+    }
+    #fr{
+        display:none;
+    }
 }
 
 </style>
@@ -140,6 +146,7 @@ $('.input-daterange').datepicker({
         data-to="200"
         data-grid="true"
         data-skin="round"
+        data-decorate-both="false"
     />
 <script>$(".js-range-slider").ionRangeSlider();</script>
 </div>
@@ -157,16 +164,31 @@ $('.input-daterange').datepicker({
 </form>
 <!--Fin formulario-->
 <!--Inicio Consulta-->
-<div>
     <?php
+    if(isset($_REQUEST['posicion'])){
+        $inicio = $_REQUEST['posicion'];
+    } else {
+        $inicio = 0;
+    }
+print "<div style='width:100%;height:fit-content'>";
+    //Boton de anterior
+print "<div id='fi' style='float:left;width:8%;height:8%;margin-top:100px'>";
+    if($inicio == 0){
+        print "<img src='flecha-i.png' style='width:100%;height:100%'></img>";
+    } else {
+        $anterior = $inicio-6;
+        print "<a href='Principal.php?posicion=$anterior'><img src='flecha-i.png'style='width:100%;height:100%'></img></a>";
+    }
+print "</div>";
+print "<div style='width:83.7%;float:left;margin-left:1px;margin-right:1px'>";
     $conexion=mysqli_connect("localhost", "root", "", "estacion") or die("Problemas de conexión.");
-    $registros = mysqli_query($conexion, "SELECT m.Fecha_Hora,s.modelo,m.Valor,s.id,m.Sensores_id FROM medidas m inner join sensores s on m.Sensores_id = s.id") or die("Problemas en el select ".mysqli_error($conexion));
+    $registros = mysqli_query($conexion, "SELECT m.Fecha_Hora,s.modelo,m.Valor,s.id,m.Sensores_id,m.Variables_Id FROM medidas m inner join sensores s on m.Sensores_id = s.id ORDER BY Fecha_Hora LIMIT $inicio,6") or die("Problemas en el select ".mysqli_error($conexion));
     //Fecha - (fecha)Mide_Sensor
     //Tipo - (Modelo)Sensores
     //Valor - (valor)Mide_Sensor
     //Unidad de medida - (tipo)Variable_Meteorologica
     //Sensor utilizado - (Id)Sensor
-    print "<table class='table'>";
+    print "<table class='table' style='width:100%'>";
     print "<thead class='thead-dark'>";
     print "<tr>";
     print "<th scope='col'>Fecha</th>";
@@ -176,65 +198,34 @@ $('.input-daterange').datepicker({
     print "</tr>";
     print "</thead>";
     print "<tbody>";
-//        if(isset($_REQUEST['posicion'])){
-//            $inicio = $_REQUEST['posicion'];
-//        } else {
-//            $inicio = 0;
-//        }
-//        $contador = 0;
-//        while($reg=mysqli_fetch_array($registros)){
-//            $codigosensor=$reg['codigo'];
-//            $codigovariable=$reg['Sensores_Codigo'];
-//            $registrosv=mysqli_query($conexion, "SELECT Unidad_de_medida FROM variables where Codigo = $codigovariable") or die("Problemas en el select ".mysqli_error($conexion));
-//            $regv=mysqli_fetch_array($registrosv);
-//            print "<td>".$reg['Fecha_Hora']."</td>";
-//            print "<td>".$reg['Valor']."</td>";
-//            print "<td>".$regv['Unidad_de_medida']."</td>";
-//            print "<td>".$reg['modelo']."</td>";
-//            $contador++;
-//        }
-//        //Boton de anterior
-//        if($inicio == 0){
-//            print "Anteriores";
-//        } else {
-//            $anterior = $inicio-6;
-//            print "<a href='Principal.php?posicion=$anterior'>Anteriores</a>";
-//        }
-//        //Boton de siguiente
-//        if(($contador+$inicio) < mysqli_num_rows($_REQUEST['id']){
-//        print "Siguientes";
-//        }else{
-//        $siguiente = $inicio+6;
-//        print "<a href='Principal.php?posicion=$siguiente'>Siguientes</a>";
-//        }
-
-        $a=1;
-    while($a <= 6) {
-        if ($a == 1) {
-            $caso="table-primary";
-        } elseif ($a == 2) {
-            $caso="table-secondary";
-        } elseif ($a == 3) {
-            $caso="table-success";
-        } elseif ($a == 4) {
-            $caso="table-danger";
-        } elseif ($a == 5) {
-            $caso="table-warning";
-        } elseif ($a == 6) {
-            $caso="table-info";
+        if(isset($_REQUEST['posicion'])){
+            $inicio = $_REQUEST['posicion'];
+        } else {
+            $inicio = 0;
         }
-        print "<tr class='$caso'>";
-        print "<td>A$a</td>";
-        print "<td>B$a</td>";
-        print "<td>C$a</td>";
-        print "<td>D$a</td>";
-        print "</tr>";
-        $a++;
-    }
+        $contador = 0;
+        while($reg=mysqli_fetch_array($registros)){
+            print "<tr>";
+            print "<td>".$reg['Fecha_Hora']."</td>";
+            print "<td>".$reg['Valor']."</td>";
+            print "<td>".$reg['Variables_Id']."</td>";
+            print "<td>".$reg['modelo']."</td>";
+            print "</tr>";
+            $contador++;
+        }
     print "</table>";
-    //mysqli_close($conexion);
+print "</div>";
+        //Boton de siguiente
+print "<div id='fr' style='float:right;width:8%;height:8%;margin-top:100px'>";
+        if(($contador+$inicio) > mysqli_num_rows($registros)){
+        print "<img src='flecha-d.png' style='width:100%;height:100%'></img>";
+        }else{
+        $siguiente = $inicio+6;
+        print "<a href='Principal.php?posicion=$siguiente'><img src='flecha-d.png' style='width:100%;height:100%'></a>";
+        }
+print "</div>";
+print "</div>";
 ?>
-</div>
 <!--Fin Consulta-->
 <!--Inicio Refrescar pagina-->
 <?php
