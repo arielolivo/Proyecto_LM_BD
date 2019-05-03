@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Grafica</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="librerias/main.css">
     <script src="main.js"></script>
     <!---grafica de clima--->
     <script src="librerias/highcharts.js"></script>
@@ -18,10 +18,10 @@
 
 </head>
 <body style="background-color:#EAE9E9">
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
-<div id="container" style="min-width: 310px; height: 400px; margin-top: 120px">
+<div class="tipo">
+      <a href="/proyecto/Proyecto/Principal.php" class="btn w-M br-4 stl-1-blue" >Principal</a>
+</div>
+<div id="container" style="min-width: 310px; height: 450px; margin-top:20px">
 <script>
 Highcharts.chart('container', {
     chart: {
