@@ -8,44 +8,33 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <script src="main.js"></script>
     <!---grafica de clima--->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="librerias/highcharts.js"></script>
+    <script src="librerias/series-label.js"></script>
+    <script src="librerias/exporting.js"></script>
+    <script src="librerias/export-data.js"></script>
+    <!--fin de grafica-->
+
+
+
 </head>
-<body>
-<?php
-
-$conexion = mysqli_connect("localhost", "root", "", "cursophp") or 
-            die("problemas de conexion");
-
-$registros = mysqli_query($conexion, 
-"SELECT nombreCurso, COUNT(idAlumno) as num_alu
-FROM cursos, alumnos
-WHERE codigocurso=idCurso
-GROUP BY nombreCurso;
-")
-or die("problemas en la consulta:" .mysqli_error($conexion));
-while ($reg = mysqli_fetch_array($registros)){
-echo  $reg['num_alu'] ;
-echo  $reg['nombreCurso'] ;
-}
-mysqli_close($conexion);
-
-echo"<div id='container' style='min-width: 310px; height: 400px; margin: 0 auto'>
-    <script>
-     Highcharts.chart('container', {
+<body style="background-color:#EAE9E9">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+<div id="container" style="min-width: 310px; height: 400px; margin-top: 120px">
+<script>
+Highcharts.chart('container', {
     chart: {
         type: 'spline'
     },
     title: {
-        text: 'Monthly Average Temperature'
+        text: 'Grafica'
     },
     subtitle: {
-        text: 'Source: WorldClimate.com'
+        text: 'by: El mejor Grupo'
     },
     xAxis: {
-        categories: [ $reg['num_alu'], 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
             'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     },
     yAxis: {
@@ -72,31 +61,55 @@ echo"<div id='container' style='min-width: 310px; height: 400px; margin: 0 auto'
         }
     },
     series: [{
-        name: 'Tokyo',
+        name: 'Temperatura',
         marker: {
             symbol: 'square'
         },
-        data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, {
+        data: [1.5, 2.9, 3.5, 4.5, 8.2, 9.5, 10.2, {
             y: 26.5,
             marker: {
-                symbol: 'url(https://www.highcharts.com/samples/graphics/sun.png)'
+                symbol: ''
             }
-        }, 23.3, 18.3, 13.9, 9.6]
+        }, 13.3, 16.3, 17.9, 8.6]
     }, {
-        name: 'London',
+        name: 'Particulas',
         marker: {
             symbol: 'diamond'
         },
         data: [{
             y: 3.9,
             marker: {
-                symbol: 'url(https://www.highcharts.com/samples/graphics/snow.png)'
+                symbol: ''
             }
-        }, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+        }, 20.2, 30, 6.6, 15.8]
+     
+    }, {
+        name: 'Humedad',
+        marker: {
+            symbol: 'circle'
+        },
+        data: [{
+            y: 5.9,
+            marker: {
+                symbol: ''
+            }
+        }, 4.2,  17.0, 16.6, 14.2, 4.8]
+     
+    }, {
+        name: 'Indice UV',
+        marker: {
+            symbol: 'triangle'
+        },
+        data: [{
+            y: 16.9,
+            marker: {
+                symbol: ''
+            }
+        }, 10.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 8.2, 12.3, 16.6, 10.8]
+     
     }]
 });
 </script>
-</div>"
-?>
+</div>
 </body>
 </html>

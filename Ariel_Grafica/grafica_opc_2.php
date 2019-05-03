@@ -22,10 +22,10 @@ Highcharts.chart('container', {
         type: 'spline'
     },
     title: {
-        text: 'Monthly Average Temperature'
+        text: 'Grafica'
     },
     subtitle: {
-        text: 'Source: WorldClimate.com'
+        text: 'by : El mejor grupo'
     },
     xAxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
