@@ -11,6 +11,9 @@
 <body style="padding-top:50px">
     <div class="container">
 <div class="bg-warning text-dark" style="position:absolute;left:0px; top: 0px; z-index:1; width: 100%; border-radius: 0px 0px 15px 15px">
+<div style="float: left;">
+<a href="../admin.html" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true">RETROCEDER</a>
+</div>
   <h3>SENSORES</h3>
 </div>
 
@@ -102,7 +105,7 @@
                         echo         "</button>";
                         echo       "</div>";
                         echo       "<div class='modal-body'>";
-                        echo         "¿ESTAS SEGURO DE QUE DESEAS BORRAR ESTA ESTACIÓN?";
+                        echo         "¿ESTAS SEGURO DE QUE DESEAS BORRAR ESTE SENSOR?";
                         echo       "</div>";
                         echo       "<div class='modal-footer'>";
                         echo         "<button type='button' class='btn btn-secondary' data-dismiss='modal'>CERRAR</button>";
@@ -134,30 +137,16 @@
                         print  "</div>";
                         print  "<div class='modal-body'>";
                         //TABLA MODIFICAR
-                        print  "<form action='m_file\update.php' method='post'>";
-                        print         "<div class='form-group'>";
-                        print              "<label for='imarca'>MARCA</label>";
-                        print              "<input type='text' class='form-control' name='imarca' id='imarca?$reg[Marca]&' required>";
-                        print          "</div>";
+                        print  "<form action='m_file/sensores/s_update.php' method='post'>";
                         print          "<div class='form-group'>";
                         print              "<label for='imodelo'>MODELO</label>";
                         print              "<input type='text' class='form-control' name='imodelo' id='imodelo?$reg[Modelo]' required>";
                         print          "</div>";
                   
                         print          "<div class='form-group'>";
-                        print              "<label for='iip'>IP</label>";
-                        print              "<input type='text' class='form-control' name='iip' id='iip?$reg[IP]' required>";
+                        print              "<label for='inombre'>NOMBRE</label>";
+                        print              "<input type='text' class='form-control' name='inombre' id='inombre?$reg[Nombre]' required>";
                         print          "</div>";
-                        print          "<div class='form-group'>";
-                        print              "<label for='iticon'>TIPO DE CONEXIÓN</label>";
-                        print              "<input type='text' class='form-control' name='iticon' id='iticon?$reg[Tipo_Conex]' required>";
-                        print          "</div>";
-                  
-                        print          "<div class='form-group'>";
-                        print              "<label for='iubi'>UBICACIÓN</label>";
-                        print              "<input type='text' class='form-control' name='iubi' id='iubi?$reg[Ubi]' required>";
-                        print          "</div>";
-                  
                         print          "<p>";
                         print              "<input type='submit' class='btn btn-primary btn-block' value='MODIFICAR'>";
                         print          "</p>";

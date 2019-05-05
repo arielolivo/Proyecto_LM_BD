@@ -11,6 +11,9 @@
 <body style="padding-top:50px">
     <div class="container">
 <div class="bg-warning text-dark" style="position:absolute;left:0px; top: 0px; z-index:1; width: 100%; border-radius: 0px 0px 15px 15px">
+<div style="float: left;">
+<a href="../admin.html" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true">RETROCEDER</a>
+</div>
   <h3>ESTACIONES</h3>
 </div>
 
