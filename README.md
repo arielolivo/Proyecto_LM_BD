@@ -6,12 +6,4 @@ Commits a Tope!!!
 ```
 
 ## Cosas por corregir 
-- [ ] cambiar principal por index
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
+- [X] Cambiar principal por index
