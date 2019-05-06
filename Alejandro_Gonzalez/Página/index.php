@@ -1,17 +1,17 @@
 <!--Index-->
 <head>
 <!--Bootstrap-->
-<link rel="stylesheet" href="bootstrap\bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="bootstrap\jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="bootstrap\popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="bootstrap\bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="..\recursos\bootstrap\bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="..\recursos\bootstrap\jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="..\recursos\bootstrap\popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="..\recursos\bootstrap\bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!--Fin Bootstrap-->
 <!--Calendario-->
-<link href="calendario\bootstrap.min.css" rel="stylesheet">
-<script src="calendario\bootstrap.min.js"></script>
-<script type='text/javascript' src='calendario\jquery-1.8.3.js'></script>
-<link rel="stylesheet" href="calendario\bootstrap-datepicker3.min.css">
-<script type='text/javascript' src="calendario\bootstrap-datepicker.min.js"></script>
+<link href="..\recursos\calendario\bootstrap.min.css" rel="stylesheet">
+<script src="..\recursos\calendario\bootstrap.min.js"></script>
+<script type='text/javascript' src='..\recursos\calendario\jquery-1.8.3.js'></script>
+<link rel="stylesheet" href="..\recursos\calendario\bootstrap-datepicker3.min.css">
+<script type='text/javascript' src="..\recursos\calendario\bootstrap-datepicker.min.js"></script>
 <script type='text/javascript'>
 $(function(){
 $('.input-daterange').datepicker({
@@ -19,18 +19,18 @@ $('.input-daterange').datepicker({
 });
 });
 </script>
-<link href="calendario\bootstrap.css" rel="stylesheet"/>
-<link href="calendario\bootstrap-datetimepicker.css" rel="stylesheet"/>
-<script src="calendario\jquery.js"></script>
-<script src="calendario\moment.min.js"></script>
-<script src="calendario\bootstrap.js"></script>
-<script src="calendario\bootstrap-datetimepicker.min.js"></script>
+<link href="..\recursos\calendario\bootstrap.css" rel="stylesheet"/>
+<link href="..\recursos\calendario\bootstrap-datetimepicker.css" rel="stylesheet"/>
+<script src="..\recursos\calendario\jquery.js"></script>
+<script src="..\recursos\calendario\moment.min.js"></script>
+<script src="..\recursos\calendario\bootstrap.js"></script>
+<script src="..\recursos\calendario\bootstrap-datetimepicker.min.js"></script>
 <!--Fin Calendario-->
 <!--Slider 2 valores-->
-<link rel="stylesheet" href="slider\ion.rangeSlider2.min.css"/>
-<link rel="stylesheet" href="slider\ion.rangeSlider.min.css"/>
-<script src="slider\ion.rangeSlider.min.js"></script>
-<!--<script src="slider\jquery.min.js"></script>-->
+<link rel="stylesheet" href="..\recursos\slider\ion.rangeSlider2.min.css"/>
+<link rel="stylesheet" href="..\recursos\slider\ion.rangeSlider.min.css"/>
+<script src="..\recursos\slider\ion.rangeSlider.min.js"></script>
+<!--<script src="..\recursos\slider\jquery.min.js"></script>-->
 <!--Fin Slider 2 valores-->
 <link rel="stylesheet" href="main.css">
 </head>
@@ -132,7 +132,7 @@ $('.input-daterange').datepicker({
                     print "<img src='flecha-i.png' style='width:100%;height:100%'></img>";
                 } else {
                     $anterior = $inicio-1;
-                    print "<a href='Index.php?posicion=$anterior'><img src='flecha-i.png'style='width:100%;height:100%'></img></a>";
+                    print "<a href='Index.php?posicion=$anterior'><img src='..\recursos\flecha-i.png'style='width:100%;height:100%'></img></a>";
                 }
             print "</div>";
             //Fin Boton de anterior
@@ -186,7 +186,7 @@ $('.input-daterange').datepicker({
                     print "<img src='flecha-d.png' style='width:100%;height:100%'></img>";
                 }else{
                     $siguiente = $inicio+1;
-                    print "<a href='Index.php?posicion=$siguiente'><img src='flecha-d.png' style='width:100%;height:100%'></a>";
+                    print "<a href='Index.php?posicion=$siguiente'><img src='..\recursos\flecha-d.png' style='width:100%;height:100%'></a>";
                 }
             print "</div>";
             //Fin Boton de siguiente
