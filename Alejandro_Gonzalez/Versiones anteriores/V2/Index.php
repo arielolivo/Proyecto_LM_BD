@@ -31,7 +31,6 @@ $('.input-daterange').datepicker({
 <script src="calendario\bootstrap-datetimepicker.min.js"></script>
 <!--Slider 2 valores-->
 <link rel="stylesheet" href="slider\ion.rangeSlider2.min.css"/>
-<script src="slider\jquery.min.js"></script>
 <link rel="stylesheet" href="slider\ion.rangeSlider.min.css"/>
 <script src="slider\ion.rangeSlider.min.js"></script>
 <!--Boton Responsive-->
@@ -73,7 +72,6 @@ $('.input-daterange').datepicker({
         display:none;
     }
 }
-
 </style>
 <!--Fin Boton Responsive-->
 </head>
@@ -82,29 +80,13 @@ $('.input-daterange').datepicker({
 <!--Contenedor-->
 <div class="container"  style="padding-top:60px">
 <!--Cabecera-->
-<div style="position:absolute;left:0px;top:0px;z-index:100;background-color: #577284;width: 100%;height:54px;border-radius:0px 0px 30px 30px">
-
-
-
-
+<div style="position:absolute;left:0px;top:0px;z-index:100;background-color: #577284;width: 100%;height:54px">
 <form action="" method="post">
-<a href="#" class="btn btn-info" role="button" style="margin-left:5%;margin-top:10px;margin-bottom:10px;height:32px">Estadísticas</a>
-
-
-
-
+<a href="Grafica/index.php" class="btn btn-info" role="button" style="margin-left:5%;margin-top:10px;margin-bottom:10px;height:32px">Estadísticas</a>
 <div style="float:right;margin-right:5%">
 <input type="text" id="UsuarioA" placeholder="Usuario" style="margin-top:10px;margin-bottom:10px;height:32px;border-radius:5px 5px 5px 5px">
 <input type="password" id="PassA" placeholder="Contraseña" style="margin-top:10px;margin-bottom:10px;height:32px;border-radius:5px 5px 5px 5px">
-
-
-
-
-<a href="#" class="btn btn-warning" role="button" style="margin-top:10px;margin-bottom:10px;height:32px">Administración</a>
-
-
-
-
+<a href="modificar/admin.html" class="btn btn-warning" role="button" style="margin-top:10px;margin-bottom:10px;height:32px">Administración</a>
 </div>
 </form>
 </div>
@@ -115,7 +97,7 @@ $('.input-daterange').datepicker({
 <!--Inicio columna de formularios-->
 <div class="form-row">
 <div class="col-md-9">
-<form action="consulta.php" method="post">
+<form action="Index.php" method="post">
 <!--Filtro Calendario-->
 <span>Fecha del registro</span>
 <div class="input-daterange input-group form-group" id="datepicker">
@@ -141,44 +123,22 @@ $('.input-daterange').datepicker({
 <div class="form-group">
 <span>Tipo de medida: </span>
 <select class="form-control" type="text" name="UniMed" id="UniMed">
-
-
-
-
-<!--isset($_COOKIE['']) -> selected-->
 <option value="0"></option>
-<option value="1">ºC</option>
-<option value="2">Particulas por pie cúbico</option>
-<option value="3">Porcentaje de humedad</option>
-<option value="4">Índice de rayos UVA</option>
-
-
-
-
-
+<option value="ºC">ºC</option>
+<option value="p/ft³">Particulas por pie cúbico</option>
+<option value="Humedad">Porcentaje de humedad</option>
+<option value="UVA">Índice de rayos UVA</option>
 </select>
 </div>
 <!--Fin Filtro Medida-->
 <!--Inicio seleccionar 2 valores-->
 <div class="form-group">
-
-
-
-
-<!-- isset($_COOKIE[''])
-min tabla
-max tabla
-from form
-to form
--->
 <input type="text" class="js-range-slider" name="rango" value=""
         data-type="double"
-
         data-min="-200"
         data-max="200"
         data-from="-200"
         data-to="200"
-
         data-grid="true"
         data-skin="round"
         data-decorate-both="false"
@@ -199,18 +159,7 @@ to form
 </form>
 <!--Fin formulario-->
 <!--Inicio Consulta-->
-
-
-
-
-
-
-
     <?php
-    include("otroprueba.php");
-    $objBd=new AdaCnxBd("localhost","estacion","root","");
-    $objBd->conectarBD();
-
     if(isset($_REQUEST['posicion'])){
         $inicio = $_REQUEST['posicion'];
     } else {
@@ -223,14 +172,18 @@ print "<div id='fi' style='float:left;width:8%;height:8%;margin-top:100px'>";
         print "<img src='flecha-i.png' style='width:100%;height:100%'></img>";
     } else {
         $anterior = $inicio-1;
-        print "<a href='Principal.php?posicion=$anterior'><img src='flecha-i.png'style='width:100%;height:100%'></img></a>";
+        print "<a href='Index.php?posicion=$anterior'><img src='flecha-i.png'style='width:100%;height:100%'></img></a>";
     }
 print "</div>";
-
-
-
-
 print "<div style='width:83.7%;float:left;margin-left:1px;margin-right:1px'>";
+    $conexion=mysqli_connect("localhost", "root", "", "estacion") or die("Problemas de conexión.");
+    $limite = $inicio*6;
+    $registros = mysqli_query($conexion, "SELECT m.Fecha_Hora,s.modelo,m.Valor,s.id,m.Sensores_id,m.Variables_Id FROM medidas m inner join sensores s on m.Sensores_id = s.id ORDER BY Fecha_Hora LIMIT $limite,6") or die("Problemas en el select ".mysqli_error($conexion));
+    //Fecha - (fecha)Mide_Sensor
+    //Tipo - (Modelo)Sensores
+    //Valor - (valor)Mide_Sensor
+    //Unidad de medida - (tipo)Variable_Meteorologica
+    //Sensor utilizado - (Id)Sensor
     print "<table class='table' style='width:100%'>";
     print "<thead class='thead-dark'>";
     print "<tr>";
@@ -241,93 +194,75 @@ print "<div style='width:83.7%;float:left;margin-left:1px;margin-right:1px'>";
     print "</tr>";
     print "</thead>";
     print "<tbody>";
-
-
-
-    $limite = $inicio*6;
         if(isset($_REQUEST['posicion'])){
             $inicio = $_REQUEST['posicion'];
         } else {
             $inicio = 0;
         }
-        //function/($inicio,fechaini,fechafin,tipo,valormin,valormax)
-        
-        $objBd->consultarBD("");
-
-
-
         $contador = 0;
-
-        while($row=$objBd->obtenerResultado()){
-
-
-
-            if ($row["Variables_Id"] == 1){
+        while($reg=mysqli_fetch_array($registros)){
+            if ($reg['Variables_Id'] == 1){
                 $variable='ºC';
                 $cvariable='table-danger';
                 $fvariable='Temperatura';
-            } else if($row["Variables_Id"] == 2){
+            } else if($reg['Variables_Id'] == 2){
                 $variable='p/ft³';
                 $cvariable='table-success';
                 $fvariable='Particulas';
-            } else if($row["Variables_Id"] == 3){
+            } else if($reg['Variables_Id'] == 3){
                 $variable='%';
                 $cvariable='table-primary';
                 $fvariable='Humedad';
-            } else if($row["Variables_Id"] == 4){
+            } else if($reg['Variables_Id'] == 4){
                 $variable='Índice';
                 $cvariable='table-warning';
                 $fvariable='Rayos UVA';
             }
             print "<tr class='$cvariable'>";
-            print "<td style='text-align:center'>".$row["Fecha_Hora"]."</td>";
+            print "<td style='text-align:center'>".$reg['Fecha_Hora']."</td>";
             print "<td style='text-align:center;border-left: 1px solid grey'>".$fvariable."</td>";
-            print "<td style='text-align:center;border-left: 1px solid grey'>".$row["Valor"].' '.$variable."</td>";
-            print "<td style='text-align:center;border-left: 1px solid grey'>".$row["modelo"]."</td>";
+            print "<td style='text-align:center;border-left: 1px solid grey'>".$reg['Valor'].' '.$variable."</td>";
+            print "<td style='text-align:center;border-left: 1px solid grey'>".$reg['modelo']."</td>";
             print "</tr>";
             $contador++;
-            }
+        }
     print "</table>";
 print "</div>";
         //Boton de siguiente
 print "<div id='fr' style='float:right;width:8%;height:8%;margin-top:100px'>";
-        if(($contador+$limite) > mysqli_num_rows($registro) && mysqli_num_rows($registro) > 0){
+        if(($contador+$limite) > mysqli_num_rows($registros) && mysqli_num_rows($registros) <= 0){
         print "<img src='flecha-d.png' style='width:100%;height:100%'></img>";
         }else{
         $siguiente = $inicio+1;
-        print "<a href='Principal.php?posicion=$siguiente'><img src='flecha-d.png' style='width:100%;height:100%'></a>";
+        print "<a href='Index.php?posicion=$siguiente'><img src='flecha-d.png' style='width:100%;height:100%'></a>";
         }
 print "</div>";
 print "</div>";
-//Fin Consulta
-
-
-$objBd->terminarConsulta();
-$objBD->desconectarBD();
-
-
-//Inicio Refrescar pagina
+?>
+<!--Fin Consulta-->
+<!--Inicio Refrescar pagina-->
+<?php
 if (
-    (isset($_REQUEST['rango']))
-    ||
-    (isset($_REQUEST['fecha1']))
-    ||
-    (isset($_REQUEST['fecha2']))
-    ||
-    (isset($_REQUEST['UniMed'])))
-    {
-        list($rango1, $rango2)= explode(";",$_REQUEST['rango']);
-    if(
-    (!empty($_REQUEST['fecha1']))
-    ||
-    (!empty($_REQUEST['fecha2']))
-    ||
-    ($_REQUEST['UniMed'] != "0")
-    ||
-    ($rango1 != -200)
-    ||
-    ($rango2 != 200)
-    ){
+(isset($_REQUEST['rango']))
+||
+(isset($_REQUEST['fecha1']))
+||
+(isset($_REQUEST['fecha2']))
+||
+(isset($_REQUEST['UniMed'])))
+{
+    list($rango1, $rango2)= explode(";",$_REQUEST['rango']);
+if(
+(!empty($_REQUEST['fecha1']))
+||
+(!empty($_REQUEST['fecha2']))
+||
+($_REQUEST['UniMed'] != "0")
+||
+($rango1 != -200)
+||
+($rango2 != 200)
+){
 print "<div>";
 print "<form action=''>";
 print "<p><input style='width:100%;margin-top:20px' class='btn btn-primary' type='submit' value='Reestablecer'></p>";
