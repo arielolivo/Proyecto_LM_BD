@@ -7,3 +7,5 @@ Commits a Tope!!!
 
 ## Cosas por corregir 
 - [X] Cambiar principal por index
+- [ ] Pagina de grafica conexion a base de datos
+- [ ] y mas cosas
