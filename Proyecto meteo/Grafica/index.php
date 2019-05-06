@@ -12,23 +12,12 @@
     <script src="librerias/series-label.js"></script>
     <script src="librerias/exporting.js"></script>
     <script src="librerias/export-data.js"></script>
-    <!--fin de grafica-->
-
-    <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
-   
-    
-
 </head>
 <body id='body' >
 <div class="tipo">
-      <a href="/proyecto/Proyecto/Principal.php" class="btn w-M br-4 stl-1-black" >Principal</a>
-      <button id='tema' class="btn w-M br-4 stl-1-black">CAMBIAR TEMA</button>
+      <a href="../Index.php" class="btn w-M br-4 stl-1-black">Principal</a>
+      <!--<button id='tema' class="btn w-M br-4 stl-1-black">CAMBIAR TEMA</button>-->
 </div>
-
-
-    
-
-
 <div id="container" style="min-width: 310px; height: 450px; margin-top:20px">
 <script>
 Highcharts.chart('container', {
@@ -42,8 +31,8 @@ Highcharts.chart('container', {
         text: 'by: El mejor Grupo'
     },
     xAxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        categories: ['12:00', '12:30', '13:00', '13:30', '14:00', '14:30',
+                    '15:00', '15:30', '16:00', '16:30', '17:00', '17:30']
     },
     yAxis: {
         title: {
@@ -90,7 +79,6 @@ Highcharts.chart('container', {
                 symbol: ''
             }
         }, 20.2, 30, 6.6, 15.8,10, 20, 30, 25, 20, 18]
-     
     }, {
         name: 'Humedad',
         marker: {
@@ -102,7 +90,6 @@ Highcharts.chart('container', {
                 symbol: ''
             }
         }, 4.2,  17.0, 16.6, 14.2, 4.8]
-     
     }, {
         name: 'Indice UV',
         marker: {
@@ -114,7 +101,6 @@ Highcharts.chart('container', {
                 symbol: ''
             }
         }, 10.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 8.2, 12.3, 16.6, 10.8]
-     
     }]
 });
 </script>
@@ -128,6 +114,5 @@ warning : #FEEBB5
 succes: #BAE4C6
 danger: #F5BDC5
 primary: #B1D7FD
-
 -->
 </html>
