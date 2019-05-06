@@ -48,7 +48,7 @@ CREATE TABLE `Sensores` (
     CONSTRAINT fk_estacion_Sensores
     FOREIGN KEY (Id_Estacion)
     REFERENCES ESTACION.Estaciones (Id)
-    ON DELETE CASCADE
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
