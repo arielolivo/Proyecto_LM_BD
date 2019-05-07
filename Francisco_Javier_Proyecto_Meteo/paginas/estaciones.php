@@ -188,7 +188,7 @@
                   
                         print          "<div class='form-group'>";
                         print              "<label for='mubi'>UBICACIÓN</label>";
-                        print              "<input type='text' class='form-control' name='mubi' id='mubi?$reg[Ubi]' value='$reg[Ubi]'> maxlength='45'";
+                        print              "<input type='text' class='form-control' name='mubi' id='mubi?$reg[Ubi]' value='$reg[Ubi]' maxlength='45'>";
                         print          "</div>";
                   
                         print          "<p>";
@@ -227,6 +227,7 @@ SENSORES: AÑADIR BOTTÓN PARA VINVULARLO A UNA ESTACIÓN.
 PONER UNA VERSION HORIZONTAL Y VERTICAL DE LA WEB MODIFICAR
 PONER PANEL SPOILER INFORMACIÓN
 PONER ESCTRUCTURA DE TEXTO POR EJEMPLO (192.168.1.1)
+HACER QUE LA TABLA DE LA CONSULTA SE ADAPTE A LA PANTALLA
    --> 
 
     <!-- Optional JavaScript -->
