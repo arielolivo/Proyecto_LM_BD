@@ -16,6 +16,6 @@
         
             mysqli_close($conexion);
         //HEADER QUE MANDA UN MENSAJE A inicio.php
-            header('location: ..\..\sensores.php?mensaje=SENSOR ACTUALIZADA');
+            header('location: ..\..\sensores.php?mensaje=SENSOR ACTUALIZADO');
             
             ?>
