@@ -1,0 +1,180 @@
+body {
+    background-color:#EAE9E9;
+    padding-top:60px;
+}
+
+#buscar{
+    height: 180px;
+    width:270%;
+    Margin-left:20px;
+}
+
+@media only screen and (max-width: 991px) {
+    #buscar {
+        width:255%;
+    }
+    #fi {
+        visibility: hidden;
+        position: absolute;
+    }
+    #fif {
+        display: block;
+    }
+    #fr {
+        float:right;
+        width:70px;
+        height:70px;
+        margin-top:0px;
+        position: relative;
+        top: -70px;
+    }
+    #tabla {
+        width:100%;
+    }
+    #refrescar p {
+        height: 0px;
+    }
+    #refrescar input{
+        width:70%;
+        position: relative;
+        top: -80px;
+        left: 15%;
+    }
+}
+@media only screen and (min-width: 992px) {
+    #fif {
+        visibility: hidden;
+        position: absolute;
+    }
+    #fr {
+        float:right;
+        width:8%;
+        height:70px;
+        margin-top:100px;
+    }
+    #tabla {
+        width:83.7%;
+    }
+    #refrescar p {
+        height: 334px;
+    }
+    #refrescar input{
+        width:100%;
+        position: relative;
+        top: -30px;
+    }
+}
+@media only screen and (max-width: 767px) {
+    #buscar {
+        width:100%;
+        height:60px;
+        padding-left:0px;
+        padding-right: 0px;
+        margin-bottom:45px;
+        Margin-left:0px;
+        }
+    .divbuscar {
+        top:0px;
+}
+}
+@media only screen and (max-width: 530px) {
+    #refrescar input{
+        width:65%;
+        position: relative;
+        top: -80px;
+        left: 17.5%;
+    }
+}
+
+#fi {
+    float:left;
+    min-width: 70px;
+    width:8%;
+    height:70;
+    margin-top:100px;
+}
+
+#fi img {
+    width:70px;
+    height:70px;
+}
+
+#fif{
+    width: 70px;
+}
+
+#fif img {
+    width:70px;
+    height:70px;
+}
+
+#fr img {
+    width:70px;
+    height:70px;
+}
+
+#cabecera {
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index:100;
+    background-color: #577284;
+    width: 100%;
+    height:54px
+}
+
+#cabecera a {
+    margin-top:10px;
+    margin-bottom:10px;
+    height:32px;
+    float: right;
+    margin-right:15px;
+}
+#boton {
+    position:relative;
+    top:20px;
+    margin-bottom:0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#datetimepicker1 {
+    border-radius:3px 0px 0px 3px;
+}
+
+#datetimepicker2 {
+    border-radius:0px 3px 3px 0px;
+}
+
+#divt {
+    width:100%;
+    height:fit-content;
+}
+
+#tabla {
+    float:left;
+    margin-left:1px;
+    margin-right:1px;
+}
+
+#tabla table {
+    width:100%;
+    border-collapse: collapse;
+}
+
+#tabla th {
+    text-align:center;
+    border: 1px solid grey;
+}
+
+#tabla td {
+    text-align:center;
+    border: 1px solid grey;
+}
+
+#refrescar input{
+    margin-top:20px;
+    height: 50px;
+}
