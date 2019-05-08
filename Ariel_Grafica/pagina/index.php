@@ -25,8 +25,8 @@
       <button id='tema' class="btn w-M br-4 stl-1-black">CAMBIAR TEMA</button>
 </div> 
 <?php
-$conexion=mysqli_connect("localhost", "root", "", "estacion") or die("Problemas de conexión.");
-$registros = mysqli_query($conexion, "SELECT TIME_FORMAT(m.Fecha_Hora,'%h:%i %p')as hora FROM medidas m  ORDER BY Fecha_Hora ") 
+$conexion=mysqli_connect("localhost", "root", "", "ESTACION") or die("Problemas de conexión.");
+$registros = mysqli_query($conexion, "SELECT TIME_FORMAT(m.Fecha_Hora,'%h:%i %p')as hora FROM Medidas m  ORDER BY Fecha_Hora ") 
                 or die("Problemas en el select ".mysqli_error($conexion));
 
 while($reg=mysqli_fetch_array($registros)){
@@ -69,7 +69,7 @@ Highcharts.chart('container', {
     plotOptions: {
         spline: {
             marker: {
-                radius: 4,
+                radius: 5,
                 lineColor: '#915A4E',
                 lineWidth: 1
             }
@@ -97,6 +97,7 @@ Highcharts.chart('container', {
                 symbol: ''
             }
         }, 20.2, 30, 6.6, 15.8,10, 20, 30, 25, 20, 18]
+        
      
     }, {
         name: 'Humedad',
@@ -124,6 +125,7 @@ Highcharts.chart('container', {
      
     }, {
         name: 'Intencidad UV',
+        visible: false,
         marker: {
             symbol: 'triangle'
         },
@@ -136,6 +138,7 @@ Highcharts.chart('container', {
      
     }, {
         name: 'CO2',
+        visible: false,
         marker: {
             symbol: 'triangle'
         },
@@ -148,6 +151,7 @@ Highcharts.chart('container', {
      
     }, {
         name: 'Presión',
+        visible: false,
         marker: {
             symbol: 'triangle'
         },
@@ -160,6 +164,7 @@ Highcharts.chart('container', {
      
     }, {
         name: 'Concentración de partículas',
+        visible: false,
         marker: {
             symbol: 'triangle'
         },
@@ -172,6 +177,7 @@ Highcharts.chart('container', {
      
     }, {
         name: 'Concentración de gases',
+        visible: false,
         marker: {
             symbol: 'triangle'
         },
