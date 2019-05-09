@@ -1,10 +1,10 @@
 
             <?php
-            $marca = trim(htmlspecialchars($_REQUEST["imarca"], ENT_QUOTES, "UTF-8"));
-            $modelo = trim(htmlspecialchars($_REQUEST["imodelo"], ENT_QUOTES, "UTF-8"));
-            $ip = trim(htmlspecialchars($_REQUEST["iip"], ENT_QUOTES, "UTF-8"));
-            $tipoc = trim(htmlspecialchars($_REQUEST["iticon"], ENT_QUOTES, "UTF-8"));
-            $ubi = trim(htmlspecialchars($_REQUEST["iubi"], ENT_QUOTES, "UTF-8"));
+            $marca = trim(htmlspecialchars($_REQUEST["e_imarca"], ENT_QUOTES, "UTF-8"));
+            $modelo = trim(htmlspecialchars($_REQUEST["e_imodelo"], ENT_QUOTES, "UTF-8"));
+            $ip = trim(htmlspecialchars($_REQUEST["e_iip"], ENT_QUOTES, "UTF-8"));
+            $tipoc = trim(htmlspecialchars($_REQUEST["e_iticon"], ENT_QUOTES, "UTF-8"));
+            $ubi = trim(htmlspecialchars($_REQUEST["e_iubi"], ENT_QUOTES, "UTF-8"));
             
             //CON1
             $conexion = mysqli_connect("localhost", "root", "", "estacion")
@@ -17,6 +17,6 @@
         
             mysqli_close($conexion);
         //HEADER QUE MANDA UN MENSAJE A inicio.php
-            header('location: ../../estaciones.php?mensaje=ESTACIÓN AGREGADA');
+            header('location: ../../estaciones.php?e_mensaje=ESTACIÓN AGREGADA');
             
             ?>
