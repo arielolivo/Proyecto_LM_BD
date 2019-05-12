@@ -16,6 +16,6 @@ $id = trim(htmlspecialchars($_REQUEST["id"], ENT_QUOTES, "UTF-8"));
         
             mysqli_close($conexion);
         //HEADER QUE MANDA UN MENSAJE A inicio.php
-            header('location: ../../estaciones.php?e_mensaje=ESTACIÓN BORRADA');
+            header('location: ../../m_data.php?e_mensaje=ESTACIÓN BORRADA');
             
 ?>

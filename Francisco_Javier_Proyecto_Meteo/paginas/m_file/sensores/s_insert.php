@@ -14,6 +14,6 @@
         
             mysqli_close($conexion);
         //HEADER QUE MANDA UN MENSAJE A inicio.php
-            header('location: ..\..\sensores.php?s_mensaje=SENSOR AGREGADO');
+            header('location: ..\..\m_data.php?s_mensaje=SENSOR AGREGADO');
             
 ?>

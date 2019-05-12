@@ -17,6 +17,6 @@
         
             mysqli_close($conexion);
         //HEADER QUE MANDA UN MENSAJE A inicio.php
-            header('location: ../../estaciones.php?e_mensaje=ESTACIÓN AGREGADA');
+            header('location: ../../m_data.php?e_mensaje=ESTACIÓN AGREGADA');
             
             ?>
