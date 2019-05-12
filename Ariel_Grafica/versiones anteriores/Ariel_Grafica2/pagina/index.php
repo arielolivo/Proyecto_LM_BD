@@ -26,13 +26,15 @@
 </div> 
 <?php
 $conexion=mysqli_connect("localhost", "root", "", "ESTACION") or die("Problemas de conexión.");
-$registros = mysqli_query($conexion, "SELECT TIME_FORMAT(m.Fecha_Hora,'%h:%i')as hora , Valor as y FROM Medidas m  ORDER BY Fecha_Hora ") 
+$registros = mysqli_query($conexion, "SELECT UNIX_TIMESTAMP(CONVERT_TZ(m.Fecha_Hora, '+00:00', @@global.time_zone))*1000 as x, Valor as y FROM Medidas as m ORDER BY Fecha_Hora ") 
                 or die("Problemas en el select ".mysqli_error($conexion));
 
+            
+
 while($reg=mysqli_fetch_array($registros)){
-  echo $reg['hora'];
+  echo $reg['x'];
 };
-$hora=$reg['hora'];
+$hora=$reg['x'];
  
 
 mysqli_close($conexion);
@@ -51,7 +53,7 @@ Highcharts.chart('container', {
     },
     xAxis: {
         
-        categories: []
+        categories: [<?php echo $hora;?>]
     },
     yAxis: {
         title: {
@@ -81,7 +83,7 @@ Highcharts.chart('container', {
         marker: {
             symbol: 'square'
         },
-        data: [ <?php echo $reg["Valor"]?>]
+        data: [ <?php echo $reg["y"]?>]
     }, {
         name: 'Particulas',
         marker: {
