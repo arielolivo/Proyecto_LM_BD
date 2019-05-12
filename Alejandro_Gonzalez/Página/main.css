@@ -13,45 +13,11 @@ body {
     #buscar {
         width:255%;
     }
-    #fi {
-        visibility: hidden;
-        position: absolute;
-    }
-    #fif {
-        display: block;
-    }
-    #fr {
-        float:right;
-        width:70px;
-        height:70px;
-        margin-top:0px;
-        position: relative;
-        top: -70px;
-    }
     #tabla {
         width:100%;
     }
-    #refrescar p {
-        height: 0px;
-    }
-    #refrescar input{
-        width:70%;
-        position: relative;
-        top: -80px;
-        left: 15%;
-    }
 }
 @media only screen and (min-width: 992px) {
-    #fif {
-        visibility: hidden;
-        position: absolute;
-    }
-    #fr {
-        float:right;
-        width:8%;
-        height:70px;
-        margin-top:100px;
-    }
     #tabla {
         width:83.7%;
     }
@@ -77,40 +43,33 @@ body {
         top:0px;
 }
 }
-@media only screen and (max-width: 530px) {
-    #refrescar input{
-        width:65%;
-        position: relative;
-        top: -80px;
-        left: 17.5%;
-    }
-}
 
 #fi {
     float:left;
-    min-width: 70px;
+    min-width: 50px;
     width:8%;
-    height:70;
-    margin-top:100px;
+    height:70px;
+    margin-top:-10px;
+    margin-bottom:0px;
+}
+
+#fr {
+    float: right;
+    min-width: 50px;
+    width:8%;
+    height:70px;
+    margin-top:-10px;
+    margin-bottom:0px;
 }
 
 #fi img {
-    width:70px;
-    height:70px;
-}
-
-#fif{
-    width: 70px;
-}
-
-#fif img {
-    width:70px;
-    height:70px;
+    width:50px;
+    height:50px;
 }
 
 #fr img {
-    width:70px;
-    height:70px;
+    width:50px;
+    height:50px;
 }
 
 #cabecera {
@@ -174,7 +133,10 @@ body {
     border: 1px solid grey;
 }
 
+#refrescar p{
+    height: 90px;
+}
 #refrescar input{
     margin-top:20px;
-    height: 50px;
+    height: 35px;
 }
