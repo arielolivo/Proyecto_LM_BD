@@ -16,12 +16,13 @@
 </head>
 <!--Color oscuro  style="background-color:#212121"-->
 <body>
+<?php if(isset($_REQUEST['rango'])){list($rango1, $rango2)= explode(";",$_REQUEST['rango']);}?>
 <!--Contenedor-->
 <div class="container">
     <!--Cabecera-->
     <div id="cabecera">
-        <a href="modificar/admin.html" class="btn btn-warning" role="button">Administración</a>
-        <a href="Grafica/index.php" class="btn btn-info" role="button">Estadísticas</a>
+        <a href="m_data.html" class="btn btn-warning" role="button">Administración</a>
+        <a href="grafica.html" class="btn btn-info" role="button">Gráfica</a>
     </div>
     <!--Fin Cabecera-->
     <!--Formulario-->
@@ -51,22 +52,21 @@
                         <span>Tipo de medida: </span>
                         <select class="form-control" type="text" name="UniMed" id="UniMed">
                             <option value="0" <?php if(isset($_REQUEST['UniMed']) && $_REQUEST['UniMed'] == 0){print "selected";}?>></option>
-                            <option value="ºC" <?php if(isset($_REQUEST['UniMed']) && $_REQUEST['UniMed'] == 'ºC'){print "selected";}?>>ºC</option>
-                            <option value="p/ft³" <?php if(isset($_REQUEST['UniMed']) && $_REQUEST['UniMed'] == 'p/ft³'){print "selected";}?>>Particulas por pie cúbico</option>
-                            <option value="Humedad" <?php if(isset($_REQUEST['UniMed']) && $_REQUEST['UniMed'] == 'Humedad'){print "selected";}?>>Porcentaje de humedad</option>
-                            <option value="UVA" <?php if(isset($_REQUEST['UniMed']) && $_REQUEST['UniMed'] == 'UVA'){print "selected";}?>>Índice de rayos UVA</option>
+                            <option value="1" <?php if(isset($_REQUEST['UniMed']) && $_REQUEST['UniMed'] == 1){print "selected";}?>>ºC</option>
+                            <option value="2" <?php if(isset($_REQUEST['UniMed']) && $_REQUEST['UniMed'] == 2){print "selected";}?>>Particulas por pie cúbico</option>
+                            <option value="3" <?php if(isset($_REQUEST['UniMed']) && $_REQUEST['UniMed'] == 3){print "selected";}?>>Porcentaje de humedad</option>
+                            <option value="4" <?php if(isset($_REQUEST['UniMed']) && $_REQUEST['UniMed'] == 4){print "selected";}?>>Índice de rayos UVA</option>
                         </select>
                     </div>
                     <!--Fin Filtro Medida-->
                     <!--Seleccionar 2 valores-->
-                    <?php if(isset($_REQUEST['rango'])){list($rango1, $rango2)= explode(";",$_REQUEST['rango']);}?>
                     <div class="form-group">
                         <input type="text" class="js-range-slider" name="rango" value=""
                             data-type="double"
                             data-min="-200"
                             data-max="200"
-                            data-from= "<?php print $rango1;?>"
-                            data-to= "<?php print $rango2;?>"
+                            data-from= "<?php if(isset($rango1)){print $rango1;}else{print "-200";}?>"
+                            data-to= "<?php if(isset($rango2)){print $rango2;}else{print "200";}?>"
                             data-grid="true"
                             data-skin="round"  
                         />
@@ -88,84 +88,154 @@
     <!--Fin Formulario-->
     <!--Consulta-->
     <?php
+//No se puede realizar la consulta con la fecha:
+//Estas son las condiciones de la busqueda, hay un fallo en la busqueda por que la fecha tiene un espacio en medio, y da error en la consulta
+//mediante la consulta y solo funciona para la primera página, no se aplica a las páginas de posición 1,2... que son usadas en la paginacion.
+    include("SGBD.php");
+    if(isset($_REQUEST["fecha1"]) && !empty($_REQUEST["fecha1"])){
+        $fechaInicio = to_date($_REQUEST["fecha1"]);
+    } else {
+        $fechaInicio='to_date("2000-01-01 00:00:00")';
+    }
+    if(isset($_REQUEST["fecha2"]) && !empty($_REQUEST["fecha2"])){
+        $fechaFin = to_date($_REQUEST["fecha2"]);
+    } else {
+        $fechaFin='to_date("2200-01-01 00:00:00")';
+    }
+    //$condicion='m.Fecha_Hora BETWEEN '. $fechaInicio .' and '. $fechaFin;
+    if(isset($_REQUEST["rango"])){
+        $valor = $_REQUEST["rango"];
+    list($valorInicio,$valorFin) = explode(';',$valor);
+    } else {
+        $valorInicio = -200;
+        $valorFin = 200;
+    }
+    $condicion="m.valor between ". $valorInicio." and ".$valorFin;
+    if(isset($_REQUEST["UniMed"])){
+        if($_REQUEST["UniMed"] != 0){
+            $condicion=$condicion." and m.Variables_Id like ". $_REQUEST["UniMed"];
+        }}
+
         //Posicion para el limit de la tabla
-//        if(isset($_REQUEST['posicion'])){
-//            $inicio = $_REQUEST['posicion'];
-//        } else {
-//            $inicio = 0;
-//        }
+        if(isset($_REQUEST['posicion'])){
+            $inicio = $_REQUEST['posicion'];
+        } else {
+            $inicio = 0;
+        }
         //Fin Posicion
+        $campos = 'm.Fecha_Hora,s.modelo,m.Valor,s.id,m.Sensores_id,m.Variables_Id';
+        $tablas = 'medidas m inner join sensores s on m.Sensores_id = s.id';
+        $pagina = $inicio*5;
+        $limite = 5;
+        print $condicion;
+        $query = SGBD::Select($campos,$tablas,$condicion,$pagina,$limite);
         //Tabla
         print "<div>";
-            print "<div >";
-//                $conexion=mysqli_connect("localhost", "root", "", "estacion") or die("Problemas de conexión.");
-//                $limite = $inicio*6;
-//                $registros = mysqli_query($conexion, "SELECT m.Fecha_Hora,s.modelo,m.Valor,s.id,m.Sensores_id,m.Variables_Id FROM medidas m inner join sensores s on m.Sensores_id = s.id ORDER BY Fecha_Hora LIMIT $limite,6") or die("Problemas en el select ".mysqli_error($conexion));
-                print "<table class='table'>";
+            print "<div>";
+            $cuenta = SGBD::sql("select valor from medidas");
+                $count = mysqli_num_rows($cuenta);
+                print "<table class='table' id='tabla'>";
                     print "<thead class='thead-dark'>";
                         print "<tr>";
-                            print "<th scope='col' style='text-align:center'>Fecha - Hora</th>";
-                            print "<th scope='col' style='text-align:center;border-left: 1px solid grey'>Tipo</th>";
-                            print "<th scope='col' style='text-align:center;border-left: 1px solid grey'>Valor</th>";
-                            print "<th scope='col' style='text-align:center;border-left: 1px solid grey'>Sensor utilizado</th>";
+                            print "<th scope='col'>Fecha - Hora</th>";
+                            print "<th scope='col'>Tipo</th>";
+                            print "<th scope='col'>Valor</th>";
+                            print "<th scope='col'>Sensor utilizado</th>";
                         print "</tr>";
                     print "</thead>";
                     print "<tbody>";
-//                        $contador = 0;
-//                        while($reg=mysqli_fetch_array($registros)){
-//                            if ($reg['Variables_Id'] == 1){
-//                                $variable='ºC';
-//                                $cvariable='table-danger';
-//                                $fvariable='Temperatura';
-//                            } else if($reg['Variables_Id'] == 2){
-//                                $variable='p/ft³';
-//                                $cvariable='table-success';
-//                                $fvariable='Particulas';
-//                            } else if($reg['Variables_Id'] == 3){
-//                                $variable='%';
-//                                $cvariable='table-primary';
-//                                $fvariable='Humedad';
-//                            } else if($reg['Variables_Id'] == 4){
-//                                $variable='Índice';
-//                                $cvariable='table-warning';
-//                                $fvariable='Rayos UVA';
-//                            }
-//                            print "<tr class='$cvariable'>";
-//                                print "<td style='text-align:center'>".$reg['Fecha_Hora']."</td>";
-//                                print "<td style='text-align:center;border-left: 1px solid grey'>".$fvariable."</td>";
-//                                print "<td style='text-align:center;border-left: 1px solid grey'>".$reg['Valor'].' '.$variable."</td>";
-//                                print "<td style='text-align:center;border-left: 1px solid grey'>".$reg['modelo']."</td>";
-//                            print "</tr>";
-//                            $contador++;
-//                        }
-                            print "<tr>";
-                                print "<td style='text-align:center'>1</td>";
-                                print "<td style='text-align:center;border-left: 1px solid grey'>2</td>";
-                                print "<td style='text-align:center;border-left: 1px solid grey'>3</td>";
-                                print "<td style='text-align:center;border-left: 1px solid grey'>4</td>";
-                            print "</tr>";
+                        $contador = 0;
+//Cambiar los valores de Variables id y el nombre de las variables segun el id asociado a estas, estos id son los usados aqui.
+//Temperatura:(ºC)                      1
+//Particulas (p/ft³)                    2
+//Humedad:(%)                           3
+//Índice UV                             4
+//Intensidad UV:(uW/cm2)                5
+//Presión:(hPa = hectopascales)         6
+//CO2:(PPM = partes por millón)         7
+//Concentración de gases(%)             8
+//Concentración de partículas(%)        9
+                        while($reg=mysqli_fetch_array($query)){
+                            if ($reg['Variables_Id'] == 1){
+                                $variable='ºC';
+                                $cvariable='table-danger';
+                                $fvariable='Temperatura';
+                            } else if($reg['Variables_Id'] == 2){
+                                $variable='p/ft³';
+                                $cvariable='table-success';
+                                $fvariable='Particulas';
+                            } else if($reg['Variables_Id'] == 3){
+                                $variable='%';
+                                $cvariable='table-primary';
+                                $fvariable='Humedad';
+                            } else if($reg['Variables_Id'] == 4){
+                                $variable='Índice';
+                                $cvariable='table-warning';
+                                $fvariable='Rayos UVA';
+                                if($reg['Valor'] <= 2){$indice="Bajo";}
+                                if($reg['Valor'] > 2 && $reg['Valor'] <= 5){$indice="Moderado";}
+                                if($reg['Valor'] > 5 && $reg['Valor'] <= 7){$indice="Alto";}
+                                if($reg['Valor'] > 7){$indice="Muy Alto";}
+                            } else if($reg['Variables_Id'] == 5){
+                                $variable='uW/cm2';
+                                $cvariable='table-warning';
+                                $fvariable='Intensidad UV';
+                            } else if($reg['Variables_Id'] == 6){
+                                $variable='hPa';
+                                $cvariable='table-primary';
+                                $fvariable='Presión';
+                            } else if($reg['Variables_Id'] == 7){
+                                $variable='PPM';
+                                $cvariable='table-light';
+                                $fvariable="CO<sub>2</sub>";
+                            } else if($reg['Variables_Id'] == 8){
+                                $variable='%';
+                                $cvariable='table-secondary';
+                                $fvariable='Conc. Gases';
+                            } else if($reg['Variables_Id'] == 9){
+                                $variable='%';
+                                $cvariable='table-secondary';
+                                $fvariable='Conc. Particulas';
+                            }
+                            if($variable != 4){
+                                print "<tr class='$cvariable'>";
+                                    print "<td>".$reg['Fecha_Hora']."</td>";
+                                    print "<td>".$fvariable."</td>";
+                                    print "<td>".$reg['Valor'].' '.$variable."</td>";
+                                    print "<td>".$reg['modelo']."</td>";
+                                print "</tr>";
+                            } else {
+                                print "<tr class='$cvariable'>";
+                                    print "<td>".$reg['Fecha_Hora']."</td>";
+                                    print "<td>".$fvariable."</td>";
+                                    print "<td>".$variable.' de '.$reg['Valor']." ".$indice."</td>";
+                                    print "<td>".$reg['modelo']."</td>";
+                                print "</tr>";
+                            }
+                            $contador++;
+                        }
                         print "</tbody>";
                 print "</table>";
             print "</div>";
             //Fin Tabla
             //Boton de anterior
             print "<div id='fi'>";
-//                if($inicio == 0){
+                if($inicio == 0){
                     print "<img src='../recursos/flecha-i.png'></img>";
-//                } else {
-//                    $anterior = $inicio-1;
-//                    print "<a href='Index.php?posicion=$anterior'><img src='../recursos/flecha-i.png'></img></a>";
-//                }
+                } else {
+                    $anterior = $inicio-1;
+                    print "<a href='Index.php?posicion=$anterior'><img src='../recursos/flecha-i.png'></img></a>";
+                }
             print "</div>";
             //Fin Boton de anterior
             //Boton de siguiente
             print "<div id='fr'>";
-//                if(($contador+$limite) > mysqli_num_rows($registros) && mysqli_num_rows($registros) <= 0){
+                if((5*$inicio) >= $count-5){
                     print "<img src='../recursos/flecha-d.png'></img>";
-//                }else{
-//                    $siguiente = $inicio+1;
-//                    print "<a href='Index.php?posicion=$siguiente'><img src='..\recursos\flecha-d.png'></a>";
-//                }
+                }else{
+                    $siguiente = $inicio+1;
+                    print "<a href='Index.php?posicion=$siguiente'><img src='../recursos/flecha-d.png'></a>";
+                }
             print "</div>";
             //Fin Boton de siguiente
         print "</div>";
@@ -180,24 +250,23 @@
             ||
             (isset($_REQUEST['UniMed'])))
             {
-                list($rango1, $rango2)= explode(";",$_REQUEST['rango']);
-                if(
-                    (!empty($_REQUEST['fecha1']))
-                    ||
-                    (!empty($_REQUEST['fecha2']))
-                    ||
-                    ($_REQUEST['UniMed'] != "0")
-                    ||
-                    ($rango1 != -200)
-                    ||
-                    ($rango2 != 200)
-                    ){
-                        print "<div id='refrescar'>";
-                        print "<form action=''>";
-                        print "<p><input class='btn btn-primary' type='submit' value='Reestablecer'></p>";
-                        print "</form>";
-                        print "</div>";
-                    }
+            if(
+                (!empty($_REQUEST['fecha1']))
+                ||
+                (!empty($_REQUEST['fecha2']))
+                ||
+                ($_REQUEST['UniMed'] != "0")
+                ||
+                ($rango1 != -200)
+                ||
+                ($rango2 != 200)
+                ){
+                    print "<div id='refrescar'>";
+                    print "<form action='index.php?posicion=0'>";
+                    print "<p><input class='btn btn-primary' type='submit' value='Reestablecer'></p>";
+                    print "</form>";
+                    print "</div>";
+                }
             }
     //Fin Refrescar pagina
     ?>
