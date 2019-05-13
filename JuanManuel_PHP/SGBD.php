@@ -1,6 +1,4 @@
 <?php
-    //Los 'define' crean constantes
-    
     /*Servidor*/
     define("HOST", 'localhost');
     /*Base de datos*/
