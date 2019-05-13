@@ -21,7 +21,7 @@ class SGBD {
             exit();
         }else{
             $mysqli->autocommit(FALSE);
-            $mysqli->begin_transaction(MYSQLI_TRANS_START_WITH_CONSISTENT_SNAPSHOT);//Esto es lo unico que no se que hace
+            $mysqli->begin_transaction(MYSQLI_TRANS_START_WITH_CONSISTENT_SNAPSHOT);
             if(!$con = $mysqli->query($query)){
                 echo 'Error de sintaxis en la consulta solicitada.';
                 $mysqli->rollback();  
@@ -45,24 +45,6 @@ class SGBD {
         return $consul;
     }
     
-    
-    public static function SelectTime($MM) {
-        if ($MM == "min"){
-
-            if (!$consul = SGBD::sql("SELECT min(m.Fecha_Hora) FROM medidas m")) {
-                echo " Ha ocurrido un error al obtener los datos.";
-            }
-                return $consul;
-
-        }else if ($MM == "max"){
-
-            if (!$consul = SGBD::sql("SELECT max(m.Fecha_Hora) FROM medidas m")) {
-                echo " Ha ocurrido un error al obtener los datos.";
-            }
-                return $consul;
-        }
-    }
-
 
     /*Funcion para insertar datos*/
     public static function Insert($tabla, $campos, $valores) {
@@ -87,23 +69,5 @@ class SGBD {
         }
         return $consul;
     }
-    /*Funcion para limpiar cadenas de texto evitando inyeccion SQL*/
-    public static function CleanString($data) {
-        $data = addslashes($data);
-        /*Lista de palabras y caracteres a limpiar*/
-        $data = str_ireplace("<script>", "", $data);
-        $data = str_ireplace("</script>", "", $data);
-        $data = str_ireplace("DROP", "", $data);
-        $data = str_ireplace("UPDATE", "", $data);
-        $data = str_ireplace("DELETE", "", $data);
-        $data = str_ireplace("SELECT", "", $data);
-        $data = str_ireplace("FROM", "", $data);
-        $data = str_ireplace("--", "", $data);
-        $data = str_ireplace("^", "", $data);
-        $data = str_ireplace("[", "", $data);
-        $data = str_ireplace("]", "", $data);
-        $data = str_ireplace("\\", "", $data);
-        $data = str_ireplace("=", "", $data);
-        return $data;
-    }
+    
 }
