@@ -13,21 +13,10 @@ body {
     #buscar {
         width:255%;
     }
-    #tabla {
-        width:100%;
-    }
 }
 @media only screen and (min-width: 992px) {
-    #tabla {
-        width:83.7%;
-    }
     #refrescar p {
         height: 334px;
-    }
-    #refrescar input{
-        width:100%;
-        position: relative;
-        top: -30px;
     }
 }
 @media only screen and (max-width: 767px) {
@@ -41,37 +30,34 @@ body {
         }
     .divbuscar {
         top:0px;
-}
+    }
+
 }
 
-#fi {
+#fi{
     float:left;
-    min-width: 50px;
-    width:8%;
-    height:70px;
-    margin-top:-10px;
-    margin-bottom:0px;
-}
-
-#fr {
-    float: right;
-    min-width: 50px;
-    width:8%;
-    height:70px;
-    margin-top:-10px;
-    margin-bottom:0px;
-}
-
-#fi img {
     width:50px;
     height:50px;
+    margin-top:0px;
 }
-
-#fr img {
+#fi img{
+    width:100%;
+    height:100%;
+    max-width:50px;
+    max-height:50px;
+}
+#fr{
+    float:right;
     width:50px;
     height:50px;
+    margin-top:0px;
 }
-
+#fr img{
+    width:100%;
+    height:100%;
+    max-width:50px;
+    max-height:50px;
+}
 #cabecera {
     position:absolute;
     left:0px;
@@ -132,11 +118,11 @@ body {
     text-align:center;
     border: 1px solid grey;
 }
-
 #refrescar p{
-    height: 90px;
+    height: 100px;
 }
 #refrescar input{
-    margin-top:20px;
+    width:100%;
+    margin-top:10px;
     height: 35px;
 }
