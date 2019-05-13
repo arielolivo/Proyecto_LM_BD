@@ -64,7 +64,7 @@
 <?php
         if (isset($_REQUEST["e_mensaje"])) {
           print "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-          <strong>ULTIMA OPCIÓN REALIZADA: $_REQUEST[e_mensaje]</strong>
+          <strong>$_REQUEST[e_mensaje]</strong>
           <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
             <span aria-hidden='true'>&times;</span>
           </button>
@@ -78,7 +78,7 @@
 <?php
         if (isset($_REQUEST["s_mensaje"])) {
           print "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-          <strong>ULTIMA OPCIÓN REALIZADA: $_REQUEST[s_mensaje]</strong>
+          <strong>$_REQUEST[s_mensaje]</strong>
           <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
             <span aria-hidden='true'>&times;</span>
           </button>
@@ -153,9 +153,11 @@
 
         <?php
         //CONEXIÓN
-        include("SGBD.php");
+            $conexion = mysqli_connect("localhost", "root", "root", "estacion") 
+            or die("Problemas con la conexión");
         //CONSULTA DE REGISTRO
-        $i = SGBD::sql('SELECT * from estaciones');
+            $registros = mysqli_query($conexion, 
+            "SELECT * from estaciones") or die("Problemas en la consulta:".mysqli_error($conexion));
             //INICIO TABLA
             print "<table class='table table-striped'>";
             print "<tr>
@@ -169,7 +171,7 @@
             <th></th>
             </tr>";
             //PRESENTACIÓN DE LA CONSULTA
-                while ($reg = mysqli_fetch_array($i)) {
+                while ($reg = mysqli_fetch_array($registros)) {
                     print "<tr>";
                         print "<td>" . $reg['Id'] . "</td>";
                         print "<td>" . $reg['Marca'] . "</td>";
@@ -267,7 +269,7 @@
             //FIN TABLA
             print "</table>";
             //FIN CONEXION
-          
+            mysqli_close($conexion);
         ?>
 <!--FIN DIV CONSULTA ESTACIÓN/ESTACIONES-->
 </div>
@@ -308,8 +310,11 @@
 
                     <select class="form-control" name="s_idestacion" id="s_idestacion">
                         <?php
-                        $i = SGBD::sql("SELECT Id, Modelo FROM estaciones");
-                        while ($reg = mysqli_fetch_array($i)) {
+                        $conexion = mysqli_connect("localhost", "root", "root", "estacion") 
+                            or die("Problemas de conexión");
+                        $registros = mysqli_query($conexion, "SELECT Id, Modelo FROM estaciones")
+                            or die("Problemas en el select".mysqli_error($conexion));
+                        while ($reg = mysqli_fetch_array($registros)) {
                             print "<option value='$reg[Id]'>$reg[Modelo]</option>";
                         }
                         ?>
@@ -343,7 +348,10 @@
 <div style="margin-top: 10px">
 
         <?php
-            $i = SGBD::sql("SELECT * from sensores");
+            $conexion = mysqli_connect("localhost", "root", "root", "estacion") 
+            or die("Problemas con la conexión");
+            $registros = mysqli_query($conexion, 
+            "SELECT * from sensores") or die("Problemas en la consulta:".mysqli_error($conexion));
             
             print "<table class='table table-striped'>";
             print "<tr>
@@ -352,7 +360,7 @@
             <th>OPCIONES</th>
             <th></th>
             </tr>";
-                while ($reg = mysqli_fetch_array($i)) {
+                while ($reg = mysqli_fetch_array($registros)) {
                     print "<tr>";
                         print "<td>" . $reg['Modelo'] . "</td>";
                         print "<td>" . $reg['Nombre'] . "</td>";
@@ -427,7 +435,7 @@
                         print "</tr>";
                 }
             print "</table>";
-            
+            mysqli_close($conexion);
         ?>
 </div>
 
