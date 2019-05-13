@@ -1,0 +1,657 @@
+/*
+
+*****************************************
+**                                     **
+**     ---------------------------     **
+**      BOTONES CSS / CSS BUTTONS      **
+**     ---------------------------     **
+**        a pen by Antolín 2016        **
+**         http://ntln.esy.es          **
+**                                     **
+**                                     **
+*****************************************
+
+- CLASES:
+
+	• Botón: class="btn"
+
+	• Tamaño / size:
+
+		- S: class="w-S"
+		- M: class="w-M"
+		- L: class="w-L"
+		- XL: class="w-XL"
+
+	• Forma / shape:
+
+		- Square: class="br-0"
+
+		- Esquinas redondeadas / round corners:
+			. class="br-1"
+			. class="br-2"
+			. class="br-3"
+			. class="br-4"
+
+		- Oval: class="br-5"
+
+		- Fancy: class="br-6"
+
+		- Tab:
+			. class="br-7"
+			. class="br-8"
+			. class="br-..."
+
+	• Styles: 
+
+		- class="stl-1"
+		- class="stl-..."
+
+	
+* MODO DE USO *******************************************************
+*                                                                   *
+*   Link tag for <head>------------------------------------------   *
+*                                                                   *
+*   <link rel="stylesheet" href="botones_CSS.css">                  *
+*                                                                   *
+*   -------------------------------------------------------------   *
+*                                                                   *
+*   HTML CODE----------------------------------------------------   *
+*                                                                   *
+*   <a href="#" class="btn [tamaño] [forma] [style]" >CLIC ME</a>   *
+*                                                                   *
+*   -------------------------------------------------------------   *
+*                                                                   *
+*********************************************************************
+
+*/
+
+/**********
+CLASE BOTÓN
+***********/
+
+.btn {
+  text-align: center;
+  margin: 0 auto;
+  font-family: 'Helvetica', sans-serif;
+  padding: 1em 3em;
+  line-height:1em;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/************
+CLASES TAMAÑO
+*************/
+
+.w-S {
+  font-size: .5em;
+}
+
+.w-M {
+  font-size: 1em;
+}
+
+.w-L {
+  font-size: 1.5em;
+}
+
+.w-XL {
+  font-size: 2em;
+}
+
+/***********
+CLASES FORMA
+************/
+
+.br-0 {
+  border-radius: 0px;
+}
+
+.br-1 {
+  border-radius: .25em;
+}
+
+.br-2 {
+  border-radius: .5em;
+}
+
+.br-3 {
+  border-radius: 1em;
+}
+
+.br-4 {
+  border-radius: 2em;
+}
+
+.br-5 {
+  border-radius: 50%;
+}
+
+.br-6 {
+  border-radius: 25%;
+}
+
+.br-7 {
+  border-radius: 0 1em 1em 0;
+}
+.br-8 {
+  border-radius: 1em 0 0 1em;
+}
+.br-9 {
+  border-radius: 2em 2em 0 0;
+}
+.br-10 {
+  border-radius: 0 0 2em 2em;
+}
+.br-11 {
+  border-radius: 2em 2em 0;
+}
+.br-12 {
+  border-radius: 2em 2em 2em 0;
+}
+.br-13 {
+  border-radius: 0 2em 2em;
+}
+.br-14 {
+  border-radius: 2em  0 2em 2em;
+}
+
+.br-15 {
+  border-radius: 0 2em;
+}
+
+.br-16 {
+  border-radius: 2em 0;
+}
+
+.br-17 {
+  border-radius: 0 0 2em 0;
+}
+
+.br-18 {
+  border-radius: 0 2em 0 0;
+}
+
+.br-19 {
+  border-radius: 2em 0 0 0;
+}
+
+.br-20 {
+  border-radius:  0 0 0 2em;
+}
+
+/************
+BUTTON STYLES
+*************/
+
+/**********
+stl-1-green
+***********/
+
+.stl-1-green {
+  background-color: transparent;
+  border: 1px solid #4eb151;
+  color: #4eb151;
+  transition-duration: .4s;
+}
+.stl-1-green:hover{  
+  background-color: #4eb151;
+  color: white;
+}
+.stl-1-green:active{  
+  background-color: #275929;
+  color: #4eb151;	
+}
+
+/*********
+stl-1-blue
+**********/
+
+.stl-1-blue {
+  background-color: transparent;
+  border: 1px solid #2691d9;
+  color: #2691d9;
+  transition-duration: .4s;
+}
+.stl-1-blue:hover{  
+  background-color: #2691d9;
+  color: white;
+}
+.stl-1-blue:active{  
+  background-color: #13496c;
+  color: #2691d9;
+}
+
+/*********
+stl-1-red
+**********/
+
+.stl-1-red {
+  background-color: transparent;
+  border: 1px solid #ec1313;
+  color: #ec1313;
+  transition-duration: .4s;
+}
+.stl-1-red:hover{  
+  background-color: #ec1313;
+  color: white;
+}
+.stl-1-red:active{  
+  background-color: #760a0a;
+  color: #ec1313;
+}
+
+/*********
+stl-1-yellow
+**********/
+
+.stl-1-yellow {
+  background-color: transparent;
+  border: 1px solid #ffd11a;
+  color: #ffd11a;
+  transition-duration: .4s;
+}
+.stl-1-yellow:hover{  
+  background-color: #ffd11a;
+  color: white;
+}
+.stl-1-yellow:active{  
+  background-color: #806600;
+  color: #ffd11a;
+}
+
+/*********
+stl-1-white
+**********/
+
+.stl-1-white {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  transition-duration: .4s;
+}
+.stl-1-white:hover{  
+  background-color: white;
+  color: rgba(0,0,0,.5);
+}
+.stl-1-white:active{  
+  background-color: #bfbfbf;
+  color: white;
+}
+
+/*********
+stl-1-black
+**********/
+
+.stl-1-black {
+  background-color: transparent;
+  border: 1px solid black;
+  color: black;
+  transition-duration: .4s;
+}
+.stl-1-black:hover{  
+  background-color: black;
+  color: white;
+}
+.stl-1-black:active{  
+  background-color: #404040;
+  color: #bfbfbf;
+}
+
+/*********
+stl-1-pink
+**********/
+
+.stl-1-pink {
+  background-color: transparent;
+  border: 1px solid #ff0080;
+  color: #ff0080;
+  transition-duration: .4s;
+}
+.stl-1-pink:hover{  
+  background-color: #ff0080;
+  color: white;
+}
+.stl-1-pink:active{  
+  background-color: #800040;
+  color: #ff0080;
+}
+
+/*********
+stl-1-purple
+**********/
+
+.stl-1-purple {
+  background-color: transparent;
+  border: 1px solid #9933ff;
+  color: #9933ff;
+  transition-duration: .4s;
+}
+.stl-1-purple:hover{  
+  background-color: #9933ff;
+  color: white;
+}
+.stl-1-purple:active{  
+  background-color: #400080;
+  color: #9933ff;
+}
+
+/*********
+stl-1-orange
+**********/
+
+.stl-1-orange {
+  background-color: transparent;
+  border: 1px solid #ff9900;
+  color: #ff9900;
+  transition-duration: .4s;
+}
+.stl-1-orange:hover{  
+  background-color: #ff9900;
+  color: white;
+}
+.stl-1-orange:active{  
+  background-color: #804d00;
+  color: #ff9900;
+}
+
+/*********
+stl-2
+**********/
+
+.stl-2 {
+  background-color: #2691d9;
+  border: 1px solid #2691d9;
+  color: white;
+  transition-duration: .2s;
+}
+.stl-2:hover{  
+  border-radius: 2em;
+}
+.stl-2:active{  
+  background-color: #13496c;
+  color: #2691d9;
+}
+
+/*********
+stl-3
+**********/
+
+.stl-3 {
+  background-color: #2691d9;
+  border: 1px solid #2691d9;
+  color: white;
+  transition-duration: .2s;
+}
+.stl-3:hover{  
+  animation-name: tembleque;
+  animation-duration: .5s;
+  animation-timing-function: ease;
+}
+.stl-3:active{  
+  transform: scale(.85,.85);
+}
+
+/*********
+stl-4
+**********/
+
+.stl-4 {
+  background-color: #2691d9;
+  border: 1px solid #2691d9;
+  color: white;
+  transition-duration: 1s;
+}
+.stl-4:hover{  
+  transform: rotateY(360deg);
+}
+.stl-4:active{  
+  background-color: #13496c;
+  color: #2691d9;
+}
+
+/*********
+stl-5
+**********/
+
+.stl-5 {
+  background-color: #2691d9;
+  border: 1px solid #2691d9;
+  color: white;
+  transition-duration: .5s;
+}
+.stl-5:hover{  
+  animation-name: gelatinahover;
+  animation-duration: .5s;
+  animation-timing-function: ease;
+}
+.stl-5:active{  
+  transform: scale(.85,.85);
+}
+
+/*********
+stl-6
+**********/
+
+.stl-6 {
+  background-color: #2691d9;
+  border: 1px solid #2691d9;
+  color: white;
+  transition-duration: .5s;
+
+}
+.stl-6:hover{  
+  animation-name: redondeo;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  box-shadow: 1px 2px 5px rgba(0,0,0,.5);
+  background: radial-gradient(ellipse at center, #92d4f4 3%,#2691d9 100%);
+}
+.stl-6:active{  
+  transform: scale(.85,.85);
+  background: linear-gradient(to right, #2691d9 0%,#006696 43%,#006696 57%,#2691d9 100%);
+}
+
+/*********
+stl-7
+**********/
+
+.stl-7 {
+  background-color: #2691d9;
+  border: 1px solid #2691d9;
+  color: white;
+  transition-duration: .5s;
+
+}
+.stl-7:hover{  
+  animation-name: bote;
+  animation-duration: .4s;
+  animation-timing-function: ease;
+  /*animation-iteration-count: infinite;
+  box-shadow: 1px 2px 5px rgba(0,0,0,.5);*/
+}
+.stl-7:active{  
+  transform: scale(.3,.9);
+  background: linear-gradient(to right, #2691d9 0%,#006696 43%,#006696 57%,#2691d9 100%);
+}
+
+/*********
+stl-8
+**********/
+
+.stl-8 {
+  background-color: #2691d9;
+  border: 1px solid #2691d9;
+  color: white;
+  transition-duration: .5s;
+
+}
+.stl-8:hover{  
+  animation-name: strech;
+  animation-duration: .4s;
+  animation-timing-function: ease;
+  /*animation-iteration-count: infinite;
+  box-shadow: 1px 2px 5px rgba(0,0,0,.5);*/
+}
+.stl-8:active{  
+  transform: scale(.3,.9);
+  background: linear-gradient(to right, #2691d9 0%,#006696 43%,#006696 57%,#2691d9 100%);
+}
+
+/**********
+ANIMACIONES
+***********/
+
+@keyframes gelatinahover {
+    0%   {transform: scale(1,1);}
+    50%  {transform: scale(1.3,1.3);}
+    100% {transform: scale(1,1);}
+}
+
+@keyframes tembleque {
+    0%   {transform: rotateZ(0deg);}
+    13%  {transform: rotateZ(10deg);}
+    26% {transform: rotateZ(0deg);}
+    39% {transform: rotateZ(-8deg);}
+    52% {transform: rotateZ(0deg);}
+    62% {transform: rotateZ(6deg);}
+    72% {transform: rotateZ(0deg);}
+    82% {transform: rotateZ(-4deg);}
+    92% {transform: rotateZ(0deg);}
+    100% {transform: rotateZ(2deg);}
+}
+
+@keyframes redondeo {
+    0%   {border-radius: 1em 1em 1em 1em}
+    12.5%  {border-radius: 1.5em 1em 1em 1em}
+    25% {border-radius: 2em 1.5em 1em 1em}
+    37.5% {border-radius: 1.5em 2em 1.5em 1em}
+    50% {border-radius: 1em 1.5em 2em 1.5em}
+    62.5% {border-radius: 1em 1em 1.5em 2em}
+    75%   {border-radius: 1em 1em 1em 1.5em}
+    87.5%  {border-radius: 1em 1.5em 2em 1.5em}
+    100% {border-radius: 1em 1em 1em 1em}
+} 
+
+@keyframes bote {
+    0%   {transform: scale(1,1);}
+    20%  {transform: scale(.6,1.5);}
+    30% {transform: scale(.3,2); transform: translate(0,-1em);}
+    40% {transform: scale(.6,1.5); transform: translate(0,-2em);}
+    45%   {transform: scale(1,1); transform: translate(0,-2em);}
+    50%  {transform: scale(.6,1.5); transform: translate(0,-2em);}
+    60% {transform: scale(.3,2); transform: translate(0,-2em);}
+    70% {transform: scale(.6,1.5);}
+    80% {transform: scale(1,1);}
+    89% {transform: scale(1,1); transform: translate(0,0);}
+    90% {transform: scale(1.5,.5); transform: translate(0,.5em);}
+    99% {transform: scale(1,1); transform: translate(0,.5em);}
+    100% {transform: scale(1,1);}
+} 
+
+@keyframes boteActive {
+    0% {transform: scale(1,1);} 
+    25% {transform: scale(.3,2);}
+    50% {transform: scale(1,1);}
+    75% {transform: scale(1.5,1);}
+    100% {transform: scale(1,1);}
+}
+
+@keyframes strech {
+    0% {transform: scale(1,1);} 
+    25% {transform: scale(.3,2);}
+    50% {transform: scale(1,1);}
+    75% {transform: scale(1.5,1);}
+    100% {transform: scale(1,1);}
+}
+
+/*************************/
+/*    ESTILOS DEL PEN    */
+/*************************/
+body {
+  text-align:center;
+  background-color: #f2f2f2;
+  margin: 0px;
+  padding: 0px;
+}
+h1, .titulo {
+  font-family: 'Indie Flower', cursive;
+  color: #2f3133;
+}
+.titulo {
+  text-align: center;
+  padding-bottom: 1em;
+  padding-top: 1em;
+  width: 100%;
+}
+.pen{
+  font-family: monospace;
+  color:#bbb;
+  margin-top: -1em;
+}
+.web{
+  font-family: monospace;
+  color:#bbb;
+  margin-top: -1em;
+  padding-bottom: 1em;
+  list-style:none;
+}
+.descripcion {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+}
+.flex-container {
+  display: flex;
+  flex-direction:column;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: 1em;
+}
+.sizes {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  background-color: white;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, .3);
+  padding: 2em 1em;
+}
+.contenedorgeneral{
+  width: 90%;
+  max-width: 1200px;
+  margin: 0px auto;
+  padding: 0px;
+}
+.contenedortipos{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+.tarjeta {
+  box-sizing: border-box;
+  background-color: white;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, .3);
+  padding: 2em 1em;
+}
+.tipo {
+  padding: 2em;
+  position: relative;
+  right: 35em;
+  margin: auto;
+  margin-left: 10em
+}
+.clase{
+  font-family: monospace;
+  color:#999;
+}
+/*************************/
+/*    FIN ESTILOS PEN    */
+/*************************/
+
+body{transition:.40s; background: #EAE9E9; color:black; padding: 50px;}
+ .black{background:#212121; color:white;}
