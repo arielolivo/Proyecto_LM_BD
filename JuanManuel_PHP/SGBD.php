@@ -33,16 +33,36 @@ class SGBD {
         $mysqli->close();
     }
 
-
+ 
 
 //Estas funciones de aqui solo son atajos no son estrictamente necesarias
     /*Funcion para seleccionar datos*/
-    public static function Select($campos, $tabla, $condicion,$order,$limit) {
-        if (!$consul = SGBD::sql("SELECT $campos FROM $tabla WHERE $condicion ORDER BY $order LIMIT $limit")) {
+    public static function Select($campos, $tabla, $condicion,$pagina,$limite) {
+        if (!$consul = SGBD::sql("SELECT $campos FROM $tabla ORDER BY Fecha_Hora
+        LIMIT $pagina,$limite"/*"SELECT $campos FROM $tabla WHERE $condicion ORDER BY Fecha_Hora LIMIT $limit"*/ )) {
             echo " Ha ocurrido un error al obtener los datos.";
         }
         return $consul;
     }
+    
+    
+    public static function SelectTime($MM) {
+        if ($MM == "min"){
+
+            if (!$consul = SGBD::sql("SELECT min(m.Fecha_Hora) FROM medidas m")) {
+                echo " Ha ocurrido un error al obtener los datos.";
+            }
+                return $consul;
+
+        }else if ($MM == "max"){
+
+            if (!$consul = SGBD::sql("SELECT max(m.Fecha_Hora) FROM medidas m")) {
+                echo " Ha ocurrido un error al obtener los datos.";
+            }
+                return $consul;
+        }
+    }
+
 
     /*Funcion para insertar datos*/
     public static function Insert($tabla, $campos, $valores) {
